@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -6,11 +7,13 @@ namespace Team1ExpenseTracker
 {
     public partial class App : Application
     {
+        public static string FileName { get; internal set; }
         public App()
         {
             InitializeComponent();
+            FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Expensefile.txt");
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new ExpensesPage());
         }
 
         protected override void OnStart()
