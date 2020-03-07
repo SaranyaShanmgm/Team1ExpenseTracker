@@ -13,28 +13,82 @@ namespace Team1ExpenseTracker
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ExpensesPage : ContentPage
     {
+        static Budget budget;
+        static TotalExpense totalexpense;
+
+
         public ExpensesPage()
         {
             InitializeComponent();
+
+            
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            
             ReadBudget();
+
             ReadExpense();
 
+            ReadTotalExpense();
+
+            BalanceRemaining();
 
         }
+
+      private void BalanceRemaining()
+       {
+            var remaininAmount = budget.BudgetAmount - App.total;
+
+            totalexpense.RemainingBalance = 0;
+
+            App.total = 0;
+
+            totalexpense.RemainingBalance = remaininAmount;
+
+            stacklayout3.BindingContext = totalexpense;
+
+            Remaininglable.SetBinding(Label.TextProperty, "RemainingBalance");
+
+
+        }
+
+        private void ReadTotalExpense()
+        {
+            totalexpense = new TotalExpense();
+
+            totalexpense.AllExpenseAdded = App.total;            
+            
+            stacklayout2.BindingContext = totalexpense;
+
+            ExpenseLable.SetBinding(Label.TextProperty, "AllExpenseAdded");
+        }
+            
+              
+
+         
         private void ReadBudget()
         {
+            string savedbudgetamount = File.ReadAllText(App.BudgetFileName);
+
+            budget = new Budget();
+
+            budget.BudgetAmount = float.Parse(savedbudgetamount);
+                       
+            stacklayout1.BindingContext = budget;
+
+
 
         }
 
-        private void ReadExpense()
+        public void ReadExpense()
         {
+           
             var expenses = new List<Expense>();
             try
             {
+                
                 string[] lines = File.ReadAllLines(App.FileName);
                 foreach (var line in lines)
                 {
@@ -47,14 +101,20 @@ namespace Team1ExpenseTracker
 
                     if (words.Length > 1)
                     {
-                        var f = float.Parse(words[1]);
+                        float f = float.Parse(words[1]);
                         expense.Amount = f;
-                    }
 
+                        App.total = App.total + f;
+
+                        
+                    }
+                   
                     expenses.Add(expense);
 
                 }
                 Expenselistview.ItemsSource = expenses.ToList();
+               
+                
             }
             catch (FileNotFoundException)
             {
@@ -62,6 +122,7 @@ namespace Team1ExpenseTracker
             }
         }
 
+       
 
         async void OnExpenseAdded_Clicked(object sender, EventArgs e)
         {
@@ -79,6 +140,7 @@ namespace Team1ExpenseTracker
 
         private async void OnBudgetButton_Clicked(object sender, EventArgs e)
         {
+            
             await Navigation.PushAsync(new BudgetEntryPage
             {
                 BindingContext = new Budget()

@@ -13,26 +13,26 @@ namespace Team1ExpenseTracker
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BudgetEntryPage : ContentPage
     {
-        public static string BudgetFileName { get; set; }
+       
         public BudgetEntryPage()
         {
             InitializeComponent();
-            BudgetFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "BudgetFile.txt");
+           
+          
         }
+
 
         private async void SaveBudget_Clicked(object sender, EventArgs e)
         {
-            var budget = (Budget)BindingContext;
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(BudgetFileName, true))
-            {
+            var budget = (Budget)BindingContext;           
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(App.BudgetFileName, false))
+            {                
                 file.WriteLine(budget.BudgetAmount);
             }
             await Navigation.PopAsync();
         }
 
-        private void DeleteBudget_Clicked(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
