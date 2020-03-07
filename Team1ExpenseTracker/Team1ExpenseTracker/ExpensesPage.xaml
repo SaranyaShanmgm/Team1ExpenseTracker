@@ -16,6 +16,20 @@
                 HorizontalOptions="Start"
                 Clicked="OnBudgetButton_Clicked" />
 
+            <StackLayout Orientation="Horizontal" x:Name="stacklayout1">
+                <Label Text="Budget:" FontSize="22"/>
+                <Label Text="{Binding BudgetAmount}" FontSize="22"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" x:Name="stacklayout2">
+                <Label Text="Expense:" FontSize="22"/>
+                <Label Text="{Binding AllExpenseAdded}" FontSize="22" x:Name="ExpenseLable"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" x:Name="stacklayout3">
+                <Label Text="Remaining Balance:" FontSize="22"/>
+                <Label Text="{Binding RemainingBalance}" FontSize="22" x:Name="Remaininglable"/>
+            </StackLayout>
 
             <ListView x:Name="Expenselistview"
               Margin="20"

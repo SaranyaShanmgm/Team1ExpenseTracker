@@ -8,18 +8,14 @@
              Title="Expense Entry">
     <StackLayout Margin="10,35,0,0">
         <Entry x:Name="ItemEntry"
-              Text="{Binding Name}"
+               Text="{Binding Name}"
                Placeholder="Enter Item Name"
                HeightRequest="50"/>
         <Entry x:Name="AmountEntry"
                Text="{Binding Amount}"
                Placeholder="Enter Amount"
                HeightRequest="50"/>
-        <!--<Entry x:Name="AmountEntry"
-               Text="{Binding Amount}"
-               Placeholder="Enter Amount"
-               HeightRequest="50"/>-->
-
+       
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
