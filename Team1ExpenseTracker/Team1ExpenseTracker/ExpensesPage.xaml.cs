@@ -33,8 +33,11 @@ namespace Team1ExpenseTracker
         private void ReadExpense()
         {
             var expenses = new List<Expense>();
+
             try
             {
+                //File.WriteAllText(App.FileName, string.Empty);
+                var file = new System.IO.FileInfo(App.FileName);                
                 string[] lines = File.ReadAllLines(App.FileName);
                 foreach (var line in lines)
                 {
@@ -50,6 +53,7 @@ namespace Team1ExpenseTracker
                         var f = float.Parse(words[1]);
                         expense.Amount = f;
                     }
+                    
 
                     expenses.Add(expense);
 
