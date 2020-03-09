@@ -53,7 +53,11 @@ namespace Team1ExpenseTracker
                         var f = float.Parse(words[1]);
                         expense.Amount = f;
                     }
-                    
+                    if(words.Length > 2)
+                    {
+                        var date = DateTime.Parse(words[2]);
+                        expense.Date = date;
+                    }
 
                     expenses.Add(expense);
 

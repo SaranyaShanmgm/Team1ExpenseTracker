@@ -22,7 +22,7 @@ namespace Team1ExpenseTracker
             var expense = (Expense)BindingContext;
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(App.FileName, true))
             {
-                var expenseString = expense.Name + ' ' + expense.Amount + ' ' + expense.Date.ToString("YYYY/MM/DD");
+                var expenseString = expense.Name + ' ' + expense.Amount + ' ' + expense.Date.ToString("yyyy/M/dd");
 
                 file.WriteLine(expenseString);
 
