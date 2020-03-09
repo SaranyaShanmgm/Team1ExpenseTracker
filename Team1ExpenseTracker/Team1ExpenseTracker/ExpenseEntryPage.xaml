@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Team1ExpenseTracker.ExpenseEntryPage"
-             Title="Expense Entry">
+             Title="Expense Entry"
+             BackgroundColor="Beige">
     <StackLayout Margin="10,35,0,0">
         <Entry x:Name="ItemEntry"
                Text="{Binding Name}"
@@ -14,7 +15,8 @@
         <Entry x:Name="AmountEntry"
                Text="{Binding Amount}"
                Placeholder="Enter Amount"
-               HeightRequest="50"/>
+               HeightRequest="50"
+               Keyboard="Numeric"/>
 
         <DatePicker x:Name="ExpenseDatePicker"
                Format="D"
@@ -28,9 +30,13 @@
             </Grid.ColumnDefinitions>
 
             <Button Text="Save"
-                    Clicked="ButtonSave_Clicked"/>
+                    Clicked="ButtonSave_Clicked"
+                    TextColor="Green"
+                    BorderColor="Black"/>
             <Button Grid.Column="1" Text="Delete"
-                    Clicked="ButtonDelete_Clicked"/>
+                    Clicked="ButtonDelete_Clicked"
+                    TextColor="Red"
+                    BorderColor="Black"/>
         </Grid>
     </StackLayout>
 </ContentPage>

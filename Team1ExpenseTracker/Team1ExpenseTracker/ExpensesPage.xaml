@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Team1ExpenseTracker.ExpensesPage">
+             x:Class="Team1ExpenseTracker.ExpensesPage"
+             BackgroundColor="Beige">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+"
             Clicked="OnExpenseAdded_Clicked"/>
@@ -17,30 +18,30 @@
                 Clicked="OnBudgetButton_Clicked" />
 
             <StackLayout Orientation="Horizontal" x:Name="stacklayout1">
-                <Label Text="Budget:" FontSize="22"/>
-                <Label Text="{Binding BudgetAmount}" FontSize="22"/>
+                <Label Text="Budget:" FontSize="22" TextColor="Black"/>
+                <Label Text="{Binding BudgetAmount}" FontSize="22" TextColor="ForestGreen"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" x:Name="stacklayout2">
-                <Label Text="Expense:" FontSize="22"/>
-                <Label Text="{Binding AllExpenseAdded}" FontSize="22" x:Name="ExpenseLable"/>
+                <Label Text="Expense:" FontSize="22" TextColor="Black"/>
+                <Label Text="{Binding AllExpenseAdded}" FontSize="22" x:Name="ExpenseLable" TextColor="Crimson"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" x:Name="stacklayout3">
-                <Label Text="Remaining Balance:" FontSize="22"/>
-                <Label Text="{Binding RemainingBalance}" FontSize="22" x:Name="Remaininglable"/>
+                <Label Text="Remaining Balance:" FontSize="22" TextColor="Black"/>
+                <Label Text="{Binding RemainingBalance}" FontSize="22" x:Name="Remaininglable" TextColor="Blue"/>
             </StackLayout>
 
             <ListView x:Name="Expenselistview"
-              Margin="20"
+              Margin="15"
               ItemSelected="Listview_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
+                        <ViewCell >
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Name}"/>
-                                <Label Text="{Binding Amount}"/>
-                                <Label Text="{Binding DisplayDate}"/>
+                                <Label Text="{Binding Name}" TextColor="Black" FontSize="18"/>
+                                <Label Text="{Binding Amount}" TextColor="Black" FontSize="18"/>
+                                <Label Text="{Binding DisplayDate}" TextColor="Black" FontSize="18"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

@@ -17,19 +17,15 @@ namespace Team1ExpenseTracker
         public BudgetEntryPage()
         {
             InitializeComponent();
-           
           
         }
 
-
         private async void SaveBudget_Clicked(object sender, EventArgs e)
         {
-            var budget = (Budget)BindingContext;           
+            var budget = (Budget)BindingContext;
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(App.BudgetFileName, false))
-            {                
-                file.WriteLine(budget.BudgetAmount);
-            }
+            File.WriteAllText(App.BudgetFileName, budget.BudgetAmount.ToString());
+            
             await Navigation.PopAsync();
         }
 
