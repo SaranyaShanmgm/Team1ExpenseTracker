@@ -5,19 +5,46 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Team1ExpenseTracker.ExpensesPage"
-             BackgroundColor="Beige">
-    <ContentPage.ToolbarItems>
+             BackgroundColor="LavenderBlush">
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Text="+"
             Clicked="OnExpenseAdded_Clicked"/>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
     <ContentPage.Content>
-        <StackLayout>
-            <Button Text="Add/Change Budget"
-                VerticalOptions="StartAndExpand"
-                HorizontalOptions="Start"
-                Clicked="OnBudgetButton_Clicked" />
 
-            <StackLayout Orientation="Horizontal" x:Name="stacklayout1">
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Overview" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" 
+                       TextColor="Black"
+                       FontSize="22"/>
+                <Grid>
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Add/Change Budget"
+                            TextColor="Black"
+                            VerticalOptions="StartAndExpand"
+                            HorizontalOptions="StartAndExpand"
+                            Clicked="OnBudgetButton_Clicked" />
+
+                    <Button Grid.Column="1"
+                           Text="Add New Expense"
+                           TextColor="Black"
+                           VerticalOptions="EndAndExpand"
+                           HorizontalOptions="EndAndExpand"
+                           Clicked="OnExpenseAdded_Clicked" />
+
+            </Grid>
+            </StackLayout>
+            
+            <StackLayout Grid.Row="1" Orientation="Horizontal" x:Name="stacklayout1">
                 <Label Text="Budget:" FontSize="22" TextColor="Black"/>
                 <Label Text="{Binding BudgetAmount}" FontSize="22" TextColor="ForestGreen"/>
             </StackLayout>
@@ -41,13 +68,16 @@
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Name}" TextColor="Black" FontSize="18"/>
                                 <Label Text="{Binding Amount}" TextColor="Black" FontSize="18"/>
+                                <Label Text="{Binding Category}" TextColor="Black" FontSize="18"/>
                                 <Label Text="{Binding DisplayDate}" TextColor="Black" FontSize="18"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                
 
             </ListView>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

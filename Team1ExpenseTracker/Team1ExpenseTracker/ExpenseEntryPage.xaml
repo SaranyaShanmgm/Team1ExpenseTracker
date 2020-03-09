@@ -17,6 +17,9 @@
                Placeholder="Enter Amount"
                HeightRequest="50"
                Keyboard="Numeric"/>
+        <Picker x:Name="Category"
+                Title="Select a category"
+                ItemsSource="{Binding EnumCategories}"/>
 
         <DatePicker x:Name="ExpenseDatePicker"
                Format="D"

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,17 +13,24 @@ namespace Team1ExpenseTracker
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ExpenseEntryPage : ContentPage
-    {
+    { 
+         public ObservableCollection<Model.Category> EnumCategories { get; set; } = new ObservableCollection<Model.Category>();
+    
         public ExpenseEntryPage()
         {
             InitializeComponent();
-        }
+        EnumCategories = new ObservableCollection<Model.Category>(Enum.GetValues(typeof(Model.Category)).OfType<Model.Category>().ToList());
+        Category.ItemsSource = EnumCategories;
+    }
         async void ButtonSave_Clicked(object sender, EventArgs e)
         {
             var expense = (Expense)BindingContext;
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(App.FileName, true))
+        var strSelectedCategory = Category.SelectedItem;
+        string selectedCategory = (string)strSelectedCategory.ToString();
+
+        using (System.IO.StreamWriter file = new System.IO.StreamWriter(App.FileName, true))
             {
-                var expenseString = expense.Name + ' ' + expense.Amount + ' ' + expense.Date.ToString("yyyy/M/dd");
+                var expenseString = expense.Name + ' ' + expense.Amount + ' ' + selectedCategory + ' ' + expense.Date.ToString("yyyy/M/dd");
 
                 file.WriteLine(expenseString);
 
