@@ -9,8 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Team1ExpenseTracker
-{
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+{ 
     public partial class ExpenseEntryPage : ContentPage
     {
         public ExpenseEntryPage()
@@ -22,18 +21,17 @@ namespace Team1ExpenseTracker
             var expense = (Expense)BindingContext;
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(App.FileName, true))
             {
+               // string date = expense.Date.ToString();
                 var expenseString = expense.Name + ' ' + expense.Amount;
                 file.WriteLine(expenseString);
-
             }
             await Navigation.PopAsync();
-
         }
         async void ButtonDelete_Clicked(object sender, EventArgs e)
         {
             var expense = (Expense)BindingContext;
+            
             string tempFile = Path.GetTempFileName();
-
             using (var sr = new StreamReader(App.FileName))
             using (var sw = new StreamWriter(tempFile))
             {
@@ -49,6 +47,11 @@ namespace Team1ExpenseTracker
             File.Copy(tempFile, App.FileName, true);
             expense.Name = string.Empty;
             await Navigation.PopAsync();
+        }
+
+        private void OnDateSelected(object sender, DateChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -4,19 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Team1ExpenseTracker.ExpensesPage">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+"
-            Clicked="OnExpenseAdded_Clicked"/>
-    </ContentPage.ToolbarItems>
+             x:Class="Team1ExpenseTracker.ExpensesPage"
+             Title="Hello there!">
+    
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Add/Change Budget"
+            <Button Text="Go to Budget"
                 VerticalOptions="StartAndExpand"
                 HorizontalOptions="Start"
                 Clicked="OnBudgetButton_Clicked" />
-
-
             <ListView x:Name="Expenselistview"
               Margin="20"
               ItemSelected="Listview_ItemSelected">
@@ -24,7 +20,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Name}"/>
+                                <Label Text="{Binding Name}" />
                                 <Label Text="{Binding Amount}"/>
                             </StackLayout>
                         </ViewCell>
@@ -32,6 +28,10 @@
                 </ListView.ItemTemplate>
 
             </ListView>
+            <Grid>
+                <Button Grid.Column ="2" Text="Add New Expense"
+                Clicked="OnExpenseAdded_Clicked" />
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

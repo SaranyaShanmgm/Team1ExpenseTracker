@@ -16,6 +16,7 @@ namespace Team1ExpenseTracker
         public ExpensesPage()
         {
             InitializeComponent();
+
         }
         protected override void OnAppearing()
         {
@@ -30,7 +31,7 @@ namespace Team1ExpenseTracker
 
         }
 
-        private void ReadExpense()
+       private void ReadExpense()
         {
             var expenses = new List<Expense>();
             try
@@ -52,7 +53,6 @@ namespace Team1ExpenseTracker
                     }
 
                     expenses.Add(expense);
-
                 }
                 Expenselistview.ItemsSource = expenses.ToList();
             }
@@ -61,7 +61,7 @@ namespace Team1ExpenseTracker
 
             }
         }
-
+        
 
         async void OnExpenseAdded_Clicked(object sender, EventArgs e)
         {
