@@ -15,7 +15,12 @@
                Text="{Binding Amount}"
                Placeholder="Enter Amount"
                HeightRequest="50"/>
-       
+
+        <DatePicker x:Name="ExpenseDatePicker"
+               Format="D"
+               Date="{Binding Date}"
+               MinimumDate="03/01/2020"
+               MaximumDate="03/30/2020"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

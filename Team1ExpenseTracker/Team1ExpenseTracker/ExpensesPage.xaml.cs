@@ -86,9 +86,11 @@ namespace Team1ExpenseTracker
         {
            
             var expenses = new List<Expense>();
+
             try
             {
-                
+                var file = new System.IO.FileInfo(App.FileName);                
+
                 string[] lines = File.ReadAllLines(App.FileName);
                 foreach (var line in lines)
                 {
@@ -104,8 +106,14 @@ namespace Team1ExpenseTracker
                         float f = float.Parse(words[1]);
                         expense.Amount = f;
 
-                        App.total = App.total + f;
+                    }
+                    if(words.Length > 2)
+                    {
+                        var dateTime = DateTime.Parse(words[2]);
+                        expense.DisplayDate = dateTime.Date.ToShortDateString();
+                    }
 
+                        App.total = App.total + f;
                         
                     }
                    
@@ -113,7 +121,7 @@ namespace Team1ExpenseTracker
 
                 }
                 Expenselistview.ItemsSource = expenses.ToList();
-               
+         
                 
             }
             catch (FileNotFoundException)
