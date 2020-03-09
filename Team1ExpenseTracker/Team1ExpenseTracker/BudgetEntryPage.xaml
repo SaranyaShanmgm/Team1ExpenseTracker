@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Team1ExpenseTracker.BudgetEntryPage">
+             x:Class="Team1ExpenseTracker.BudgetEntryPage"
+             BackgroundColor="Beige">
     <ContentPage.Content>
         <StackLayout Margin="10,35,10,0">
             <Label Text="Please set Budget Amount "/>
@@ -12,6 +13,7 @@
             <Editor x:Name="editor"
                 Text="{Binding BudgetAmount}"
                 Placeholder="Enter Budget Amount here"
+                Keyboard="Numeric"
                 HeightRequest="100"/>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -20,7 +22,9 @@
 
                 </Grid.ColumnDefinitions>
                 <Button Text="Save"
-                    Clicked="SaveBudget_Clicked"/>
+                    Clicked="SaveBudget_Clicked"
+                        TextColor="Green"
+                        BorderColor="Black"/>
                 
             </Grid>
         </StackLayout>

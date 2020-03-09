@@ -28,7 +28,7 @@ namespace Team1ExpenseTracker
         {
             base.OnAppearing();
 
-            //ReadBudget();
+            ReadBudget();
 
             ReadExpense();
 
@@ -64,17 +64,20 @@ namespace Team1ExpenseTracker
             ExpenseLable.SetBinding(Label.TextProperty, "AllExpenseAdded");
         }
 
-        /*private void ReadBudget()
+        private void ReadBudget()
         {
-            //File.WriteAllText(App.FileName, string.Empty);
+            // File.WriteAllText(App.BudgetFileName, string.Empty);
             string savedbudgetamount = File.ReadAllText(App.BudgetFileName);
 
             budget = new Budget();
 
-            /budget.BudgetAmount = float.Parse(savedbudgetamount);
+            if (!string.IsNullOrWhiteSpace(savedbudgetamount))
+            {
+                budget.BudgetAmount = float.Parse(savedbudgetamount);
+            }
 
             stacklayout1.BindingContext = budget;
-        }*/
+        }
 
         public void ReadExpense()
         {
