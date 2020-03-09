@@ -66,7 +66,7 @@ namespace Team1ExpenseTracker
 
         private void ReadBudget()
         {
-            // File.WriteAllText(App.BudgetFileName, string.Empty);
+            //File.WriteAllText(App.BudgetFileName, string.Empty);
             string savedbudgetamount = File.ReadAllText(App.BudgetFileName);
 
             budget = new Budget();
@@ -103,11 +103,17 @@ namespace Team1ExpenseTracker
                     }
                     if (words.Length > 2)
                     {
-                        var dateTime = DateTime.Parse(words[2]);
+                        expense.Category = (Category)Enum.Parse(typeof(Category), words[2]);
+                    }
+
+                    if (words.Length > 3)
+                    {
+                        var dateTime = DateTime.Parse(words[3]);
                         expense.DisplayDate = dateTime.Date.ToShortDateString();
                     }
                     
-                expenses.Add(expense);
+
+                    expenses.Add(expense);
             }
                 
             Expenselistview.ItemsSource = expenses.ToList();
