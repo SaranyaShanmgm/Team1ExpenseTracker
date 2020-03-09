@@ -13,7 +13,7 @@ namespace Team1ExpenseTracker
             InitializeComponent();
             FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Expensefile.txt");
 
-            MainPage = new NavigationPage(new ExpensesPage());
+            MainPage = new NavigationPage(new Expense());
         }
 
         protected override void OnStart()

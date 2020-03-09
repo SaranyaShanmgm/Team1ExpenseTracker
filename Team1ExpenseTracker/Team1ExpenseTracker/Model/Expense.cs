@@ -10,13 +10,20 @@ namespace Team1ExpenseTracker.Model
         Transportation,
         Personal,
         Housing,
-        Miscellaneous
-    };
+        Miscellaneous,
+        Bill,
+        Fuel
+    }
     public class Expense
     {
         public string Name { get; set; }
         public float Amount { get; set; }
         public DateTime Date { get; set; }
-        public Category Category { get; set; }
+        public Category CategoryList { get; set; }      
     }
-}
+}  
+
+    
+
+
+

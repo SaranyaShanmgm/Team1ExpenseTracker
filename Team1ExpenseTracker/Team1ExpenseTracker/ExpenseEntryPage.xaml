@@ -15,10 +15,28 @@
                Text="{Binding Amount}"
                Placeholder="Enter Amount"
                HeightRequest="50"/>
-        <!--<Entry x:Name="AmountEntry"
-               Text="{Binding Amount}"
-               Placeholder="Enter Amount"
-               HeightRequest="50"/>-->
+
+        <Picker x:Name="Category"
+                Title="Select a category"
+                ItemsSource="{Binding EnumCategories}">
+                <!--SelectedIndexChanged="Category_SelectedIndexChanged"-->
+        
+                
+            <!--<Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Food</x:String>
+                    <x:String>Transportation</x:String>
+                    <x:String>Personal</x:String>
+                    <x:String>Housing</x:String>
+                    <x:String>Miscellaneous</x:String>
+                    <x:String>Fuel</x:String>
+                    <x:String>Bill</x:String>
+
+                </x:Array>
+                         
+            </Picker.ItemsSource>-->
+         </Picker>
+      
 
         <Grid>
             <Grid.ColumnDefinitions>

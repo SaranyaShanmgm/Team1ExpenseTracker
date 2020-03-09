@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Team1ExpenseTracker.ExpensesPage">
+             x:Class="Team1ExpenseTracker.Expense">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+"
             Clicked="OnExpenseAdded_Clicked"/>
@@ -24,8 +24,9 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Name}"/>
+                                <Label Text="{Binding Name}" /> 
                                 <Label Text="{Binding Amount}"/>
+                                <Label Text="{Binding CategoryList}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

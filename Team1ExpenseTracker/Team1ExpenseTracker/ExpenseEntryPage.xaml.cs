@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,26 @@ namespace Team1ExpenseTracker
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ExpenseEntryPage : ContentPage
     {
+
+        public ObservableCollection<Model.Category> EnumCategories { get; set; } = new ObservableCollection<Model.Category>();
+       
         public ExpenseEntryPage()
         {
             InitializeComponent();
+            EnumCategories = new ObservableCollection<Model.Category>(Enum.GetValues(typeof(Model.Category)).OfType<Model.Category>().ToList());
+            Category.ItemsSource = EnumCategories;
         }
+
         async void ButtonSave_Clicked(object sender, EventArgs e)
         {
-            var expense = (Expense)BindingContext;
+            var expense = (Model.Expense)BindingContext;
+
+            var strSelectedCategory =  Category.SelectedItem;
+            string selectedCategory = (string)strSelectedCategory.ToString();
+
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(App.FileName, true))
             {
-                var expenseString = expense.Name + ' ' + expense.Amount;
+                var expenseString = expense.Name + ' '  + expense.Amount + ' ' + selectedCategory;
                 file.WriteLine(expenseString);
 
             }
@@ -31,7 +42,7 @@ namespace Team1ExpenseTracker
         }
         async void ButtonDelete_Clicked(object sender, EventArgs e)
         {
-            var expense = (Expense)BindingContext;
+            var expense = (Model.Expense)BindingContext;
             string tempFile = Path.GetTempFileName();
 
             using (var sr = new StreamReader(App.FileName))
@@ -50,5 +61,17 @@ namespace Team1ExpenseTracker
             expense.Name = string.Empty;
             await Navigation.PopAsync();
         }
+
+        //private void Category_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    var picker = (Picker)sender;
+        //    int selectedIndex = picker.SelectedIndex;
+
+        //    if (selectedIndex != -1)
+        //    {
+        //        var tmp = picker.ItemsSource[selectedIndex];
+        //        selectedCategory = (string)tmp.ToString();
+        //    }
+        //}
     }
 }
