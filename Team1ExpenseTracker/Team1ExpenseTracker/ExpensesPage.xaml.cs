@@ -8,6 +8,7 @@ using Team1ExpenseTracker.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
 namespace Team1ExpenseTracker
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -27,7 +28,7 @@ namespace Team1ExpenseTracker
         {
             base.OnAppearing();
 
-            ReadBudget();
+            //ReadBudget();
 
             ReadExpense();
 
@@ -50,8 +51,6 @@ namespace Team1ExpenseTracker
             stacklayout3.BindingContext = totalexpense;
 
             Remaininglable.SetBinding(Label.TextProperty, "RemainingBalance");
-
-
         }
 
         private void ReadTotalExpense()
@@ -65,27 +64,21 @@ namespace Team1ExpenseTracker
             ExpenseLable.SetBinding(Label.TextProperty, "AllExpenseAdded");
         }
 
-
-
-
-        private void ReadBudget()
+        /*private void ReadBudget()
         {
-            File.WriteAllText(App.FileName, string.Empty);
+            //File.WriteAllText(App.FileName, string.Empty);
             string savedbudgetamount = File.ReadAllText(App.BudgetFileName);
 
             budget = new Budget();
 
-            budget.BudgetAmount = float.Parse(savedbudgetamount);
+            /budget.BudgetAmount = float.Parse(savedbudgetamount);
 
             stacklayout1.BindingContext = budget;
-
-
-
-        }
+        }*/
 
         public void ReadExpense()
         {
-            File.WriteAllText(App.FileName, string.Empty);
+            //File.WriteAllText(App.FileName, string.Empty);
             var expenses = new List<Expense>();
             try
             {
@@ -103,7 +96,7 @@ namespace Team1ExpenseTracker
                     {
                         float f = float.Parse(words[1]);
                         expense.Amount = f;
-                        App.total = App.total + f;
+                        App.total = App.total + f; // what is this App 
                     }
                     if (words.Length > 2)
                     {
@@ -111,7 +104,6 @@ namespace Team1ExpenseTracker
                         expense.DisplayDate = dateTime.Date.ToShortDateString();
                     }
                     
-                
                 expenses.Add(expense);
             }
                 
@@ -122,8 +114,6 @@ namespace Team1ExpenseTracker
 
             }
         }
-
-
         async void OnExpenseAdded_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ExpenseEntryPage
@@ -141,10 +131,7 @@ namespace Team1ExpenseTracker
         private async void OnBudgetButton_Clicked(object sender, EventArgs e)
         {
             
-            await Navigation.PushAsync(new BudgetEntryPage
-            {
-                BindingContext = new Budget()
-            });
+            await Navigation.PushAsync(new BudgetEntryPage{BindingContext = new Budget()});
         }
     }
 }
