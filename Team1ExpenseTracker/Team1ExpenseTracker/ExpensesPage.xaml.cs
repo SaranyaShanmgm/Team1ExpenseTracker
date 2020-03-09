@@ -21,12 +21,12 @@ namespace Team1ExpenseTracker
         {
             InitializeComponent();
 
-            
+
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            
+
             ReadBudget();
 
             ReadExpense();
@@ -37,8 +37,8 @@ namespace Team1ExpenseTracker
 
         }
 
-      private void BalanceRemaining()
-       {
+        private void BalanceRemaining()
+        {
             var remaininAmount = budget.BudgetAmount - App.total;
 
             totalexpense.RemainingBalance = 0;
@@ -58,24 +58,25 @@ namespace Team1ExpenseTracker
         {
             totalexpense = new TotalExpense();
 
-            totalexpense.AllExpenseAdded = App.total;            
-            
+            totalexpense.AllExpenseAdded = App.total;
+
             stacklayout2.BindingContext = totalexpense;
 
             ExpenseLable.SetBinding(Label.TextProperty, "AllExpenseAdded");
         }
-            
-              
 
-         
+
+
+
         private void ReadBudget()
         {
+            File.WriteAllText(App.FileName, string.Empty);
             string savedbudgetamount = File.ReadAllText(App.BudgetFileName);
 
             budget = new Budget();
 
             budget.BudgetAmount = float.Parse(savedbudgetamount);
-                       
+
             stacklayout1.BindingContext = budget;
 
 
@@ -84,13 +85,11 @@ namespace Team1ExpenseTracker
 
         public void ReadExpense()
         {
-           
+            File.WriteAllText(App.FileName, string.Empty);
             var expenses = new List<Expense>();
-
             try
             {
-                var file = new System.IO.FileInfo(App.FileName);                
-
+                var file = new System.IO.FileInfo(App.FileName);
                 string[] lines = File.ReadAllLines(App.FileName);
                 foreach (var line in lines)
                 {
@@ -100,29 +99,23 @@ namespace Team1ExpenseTracker
                     {
                         expense.Name = words[0];
                     }
-
                     if (words.Length > 1)
                     {
                         float f = float.Parse(words[1]);
                         expense.Amount = f;
-
+                        App.total = App.total + f;
                     }
-                    if(words.Length > 2)
+                    if (words.Length > 2)
                     {
                         var dateTime = DateTime.Parse(words[2]);
                         expense.DisplayDate = dateTime.Date.ToShortDateString();
                     }
-
-                        App.total = App.total + f;
-                        
-                    }
-                   
-                    expenses.Add(expense);
-
-                }
-                Expenselistview.ItemsSource = expenses.ToList();
-         
+                    
                 
+                expenses.Add(expense);
+            }
+                
+            Expenselistview.ItemsSource = expenses.ToList();
             }
             catch (FileNotFoundException)
             {
@@ -130,7 +123,6 @@ namespace Team1ExpenseTracker
             }
         }
 
-       
 
         async void OnExpenseAdded_Clicked(object sender, EventArgs e)
         {
