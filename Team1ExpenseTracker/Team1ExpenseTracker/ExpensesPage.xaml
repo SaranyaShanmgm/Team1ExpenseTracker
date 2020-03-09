@@ -26,7 +26,7 @@
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Name}"/>
                                 <Label Text="{Binding Amount}"/>
-                                <Label Text="{Binding Date}"/>
+                                <Label Text="{Binding DisplayDate}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

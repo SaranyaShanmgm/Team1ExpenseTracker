@@ -36,7 +36,7 @@ namespace Team1ExpenseTracker
 
             try
             {
-                //File.WriteAllText(App.FileName, string.Empty);
+                
                 var file = new System.IO.FileInfo(App.FileName);                
                 string[] lines = File.ReadAllLines(App.FileName);
                 foreach (var line in lines)
@@ -55,8 +55,8 @@ namespace Team1ExpenseTracker
                     }
                     if(words.Length > 2)
                     {
-                        var date = DateTime.Parse(words[2]);
-                        expense.Date = date;
+                        var dateTime = DateTime.Parse(words[2]);
+                        expense.DisplayDate = dateTime.Date.ToShortDateString();
                     }
 
                     expenses.Add(expense);

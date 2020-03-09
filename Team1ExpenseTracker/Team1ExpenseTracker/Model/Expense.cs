@@ -18,5 +18,6 @@ namespace Team1ExpenseTracker.Model
         public float Amount { get; set; }
         public DateTime Date { get; set; }
         public Category Category { get; set; }
+        public string DisplayDate { get; set; }
     }
 }
