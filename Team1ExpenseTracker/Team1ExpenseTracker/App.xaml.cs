@@ -13,6 +13,8 @@ namespace Team1ExpenseTracker
 
         public static float total = 0;
 
+        
+
 
         public App()
         {
@@ -29,14 +31,17 @@ namespace Team1ExpenseTracker
 
         protected override void OnStart()
         {
+
         }
 
         protected override void OnSleep()
         {
+
         }
 
         protected override void OnResume()
         {
+
         }
     }
 }

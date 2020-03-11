@@ -13,29 +13,42 @@ namespace Team1ExpenseTracker
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ExpenseEntryPage : ContentPage
-    { 
-         public ObservableCollection<Model.Category> EnumCategories { get; set; } = new ObservableCollection<Model.Category>();
-    
+    {
+
+       
+        public ObservableCollection<Model.Category> EnumCategories { get; set; } = new ObservableCollection<Model.Category>();
+
         public ExpenseEntryPage()
         {
-            InitializeComponent();
-        EnumCategories = new ObservableCollection<Model.Category>(Enum.GetValues(typeof(Model.Category)).OfType<Model.Category>().ToList());
-        Category.ItemsSource = EnumCategories;
-    }
+            InitializeComponent();       
+          
+            EnumCategories = new ObservableCollection<Model.Category>(Enum.GetValues(typeof(Model.Category)).OfType<Model.Category>().ToList());
+            Category.ItemsSource = EnumCategories;
+        }
         async void ButtonSave_Clicked(object sender, EventArgs e)
         {
             var expense = (Expense)BindingContext;
-        var strSelectedCategory = Category.SelectedItem;
-        string selectedCategory = (string)strSelectedCategory.ToString();
 
-        using (System.IO.StreamWriter file = new System.IO.StreamWriter(App.FileName, true))
+            var strSelectedCategory = Category.SelectedItem;
+
+            if (strSelectedCategory == null || expense.Name==null || expense.Amount==0 || expense.Date==null)
             {
-                var expenseString = expense.Name + ' ' + expense.Amount + ' ' + selectedCategory + ' ' + expense.Date.ToString("yyyy/M/dd");
+                await DisplayAlert("Alert", "All Fields Required", "OK");
+            }
+            else
+            {
+                string selectedCategory = (string)strSelectedCategory.ToString();
 
-                file.WriteLine(expenseString);
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(App.FileName, true))
+                {
+                    var expenseString = expense.Name + ' ' + expense.Amount + ' ' + selectedCategory + ' ' + expense.Date.ToString("yyyy/M/dd");
+
+                    file.WriteLine(expenseString);
+
+                }
+                await Navigation.PopAsync();
 
             }
-            await Navigation.PopAsync();
 
         }
         async void ButtonDelete_Clicked(object sender, EventArgs e)

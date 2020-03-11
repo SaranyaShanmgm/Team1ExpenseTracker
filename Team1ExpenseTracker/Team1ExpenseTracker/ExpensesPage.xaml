@@ -6,10 +6,7 @@
              mc:Ignorable="d"
              x:Class="Team1ExpenseTracker.ExpensesPage"
              BackgroundColor="LavenderBlush">
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Text="+"
-            Clicked="OnExpenseAdded_Clicked"/>
-    </ContentPage.ToolbarItems>-->
+   
     <ContentPage.Content>
 
         <StackLayout>

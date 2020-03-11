@@ -7,6 +7,7 @@
              x:Class="Team1ExpenseTracker.ExpenseEntryPage"
              Title="Expense Entry"
              BackgroundColor="Beige">
+    
     <StackLayout Margin="10,35,0,0">
         <Entry x:Name="ItemEntry"
                Text="{Binding Name}"

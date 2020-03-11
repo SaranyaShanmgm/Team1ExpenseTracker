@@ -22,7 +22,6 @@ namespace Team1ExpenseTracker
         {
             InitializeComponent();
 
-
         }
         protected override void OnAppearing()
         {
@@ -66,7 +65,8 @@ namespace Team1ExpenseTracker
 
         private void ReadBudget()
         {
-            //File.WriteAllText(App.BudgetFileName, string.Empty);
+           // File.WriteAllText(App.BudgetFileName, String.Empty);
+           
             string savedbudgetamount = File.ReadAllText(App.BudgetFileName);
 
             budget = new Budget();
@@ -81,7 +81,8 @@ namespace Team1ExpenseTracker
 
         public void ReadExpense()
         {
-            //File.WriteAllText(App.FileName, string.Empty);
+           // File.WriteAllText(App.FileName, String.Empty);
+
             var expenses = new List<Expense>();
             try
             {
@@ -99,7 +100,7 @@ namespace Team1ExpenseTracker
                     {
                         float f = float.Parse(words[1]);
                         expense.Amount = f;
-                        App.total = App.total + f; // what is this App 
+                        App.total = App.total + f; 
                     }
                     if (words.Length > 2)
                     {
@@ -125,8 +126,20 @@ namespace Team1ExpenseTracker
         }
         async void OnExpenseAdded_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ExpenseEntryPage
-            { BindingContext = new Expense() });
+           
+
+            if (budget.BudgetAmount == 0)
+            {
+                await DisplayAlert("Alert", "You have not set the budget", "OK");
+
+            }
+            else
+            {
+                await Navigation.PushAsync(new ExpenseEntryPage
+                { BindingContext = new Expense() });
+            }
+
+           
         }
 
         private async void Listview_ItemSelected(object sender, SelectedItemChangedEventArgs e)
