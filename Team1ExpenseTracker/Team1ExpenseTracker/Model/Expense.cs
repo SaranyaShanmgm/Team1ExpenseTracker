@@ -12,6 +12,7 @@ namespace Team1ExpenseTracker.Model
         Housing,
         Miscellaneous
     };
+
     public class Expense
     {
         public string Name { get; set; }

@@ -25,8 +25,8 @@
         <DatePicker x:Name="ExpenseDatePicker"
                Format="D"
                Date="{Binding Date}"
-               MinimumDate="03/01/2020"
-               MaximumDate="03/30/2020"/>
+               MinimumDate="01/01/2020"
+               MaximumDate="12/30/2020"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

@@ -9,11 +9,11 @@
    
     <ContentPage.Content>
 
-        <StackLayout>
+        <StackLayout Padding="10,0,0,10">
             <StackLayout>
                 <Label Text="Overview" 
                        FontAttributes="Bold"
-                       HorizontalOptions="Center" 
+                       HorizontalOptions="Start" 
                        TextColor="Black"
                        FontSize="22"/>
                 <Grid>
@@ -43,37 +43,70 @@
             
             <StackLayout Grid.Row="1" Orientation="Horizontal" x:Name="stacklayout1">
                 <Label Text="Budget:" FontSize="22" TextColor="Black"/>
-                <Label Text="{Binding BudgetAmount}" FontSize="22" TextColor="ForestGreen"/>
+                <Label Text="{Binding BudgetAmount}" FontSize="22"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" x:Name="stacklayout2">
                 <Label Text="Expense:" FontSize="22" TextColor="Black"/>
-                <Label Text="{Binding AllExpenseAdded}" FontSize="22" x:Name="ExpenseLable" TextColor="Crimson"/>
+                <Label Text="{Binding AllExpenseAdded}" FontSize="22" x:Name="ExpenseLable" />
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" x:Name="stacklayout3">
                 <Label Text="Remaining Balance:" FontSize="22" TextColor="Black"/>
-                <Label Text="{Binding RemainingBalance}" FontSize="22" x:Name="Remaininglable" TextColor="Blue"/>
+                <Label Text="{Binding RemainingBalance}" FontSize="22" x:Name="Remaininglable"/>
             </StackLayout>
+            
+                <Label Text="Expenses" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="StartAndExpand" 
+                       TextColor="Black"
+                       FontSize="22"
+                       Padding="0,20,0,0"/>
 
             <ListView x:Name="Expenselistview"
-              Margin="15"
-              ItemSelected="Listview_ItemSelected">
+               ItemSelected="Listview_ItemSelected">
+                <ListView.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Width="100"></ColumnDefinition>
+                            <ColumnDefinition  Width="50"></ColumnDefinition>
+                            <ColumnDefinition  Width="150"></ColumnDefinition>
+                            <ColumnDefinition  Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Name"  Grid.Column="0" Grid.Row="0" FontSize="18"/>
+                        <Label Text="$" Grid.Column="1" Grid.Row="0" FontSize="18"/>
+                        <Label Text="Category" Grid.Column="2" Grid.Row="0" FontSize="18"/>
+                        <Label Text="Date" Grid.Column="3" Grid.Row="0" FontSize="18"/>
+                    </Grid>
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell >
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Name}" TextColor="Black" FontSize="18"/>
-                                <Label Text="{Binding Amount}" TextColor="Black" FontSize="18"/>
-                                <Label Text="{Binding Category}" TextColor="Black" FontSize="18"/>
-                                <Label Text="{Binding DisplayDate}" TextColor="Black" FontSize="18"/>
-                            </StackLayout>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition  Width="100"></ColumnDefinition>
+                                    <ColumnDefinition  Width="50"></ColumnDefinition>
+                                    <ColumnDefinition  Width="150"></ColumnDefinition>
+                                    <ColumnDefinition  Width="100"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0"  Text="{Binding Name}" TextColor="Black" FontSize="18"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Amount}" TextColor="Black" FontSize="18" />
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Category}" TextColor="Black" FontSize="18" />
+                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding DisplayDate}" TextColor="Black" FontSize="18" />
+
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                
-
+             
             </ListView>
+            
             
         </StackLayout>
     </ContentPage.Content>
