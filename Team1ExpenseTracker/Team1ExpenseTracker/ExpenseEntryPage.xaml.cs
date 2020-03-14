@@ -20,11 +20,14 @@ namespace Team1ExpenseTracker
 
         public ExpenseEntryPage()
         {
-            InitializeComponent();       
-          
+            InitializeComponent();
+
             EnumCategories = new ObservableCollection<Model.Category>(Enum.GetValues(typeof(Model.Category)).OfType<Model.Category>().ToList());
             Category.ItemsSource = EnumCategories;
         }
+
+        
+
         async void ButtonSave_Clicked(object sender, EventArgs e)
         {
             var expense = (Expense)BindingContext;
