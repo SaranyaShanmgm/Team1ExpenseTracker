@@ -9,7 +9,7 @@ namespace Team1ExpenseTracker
     {
         public static string FileName { get; internal set; }
         public static string BudgetFileName { get; set; }
-        public static string ExpenseFileName { get; set; }
+     //  public static string ExpenseFileName { get; set; }
 
         public static float total = 0;
 
@@ -20,9 +20,9 @@ namespace Team1ExpenseTracker
         {
             InitializeComponent();
              
-            FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Expensefile.txt");
-            BudgetFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "BudgetFile.txt");
-            ExpenseFileName= Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ExpenseFile.txt");
+            FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NewExpensefile.txt");
+            BudgetFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NewBudgetfile.txt");
+         //   ExpenseFileName= Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ExpenseFile20.txt");
 
            
 
