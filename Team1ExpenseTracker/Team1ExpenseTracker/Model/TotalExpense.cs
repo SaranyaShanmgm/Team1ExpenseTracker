@@ -8,5 +8,6 @@ namespace Team1ExpenseTracker.Model
     {
         public float AllExpenseAdded { get; set; }
         public float RemainingBalance { get; set; }
+
     }
 }
